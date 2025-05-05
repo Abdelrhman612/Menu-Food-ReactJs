@@ -1,7 +1,7 @@
 import { Card, Col, Row } from "react-bootstrap";
-import { ItemData } from "./interFace";
 import Zoom from "react-medium-image-zoom";
 import "react-medium-image-zoom/dist/styles.css";
+import { ItemData } from "./interFace";
 
 const ItemsList = ({ itemData }: { itemData: ItemData[] }) => {
   return (
