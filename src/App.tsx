@@ -9,6 +9,8 @@ import { data } from "./Data/Data";
 
 function App() {
   const [itemData, setItemData] = useState(data);
+  const AllCategories = ["الكل", ...new Set(data.map((i) => i.Category))];
+
   const felterByCategory = (name: string) => {
     if (name === "الكل") {
       setItemData(data);
@@ -17,13 +19,22 @@ function App() {
       setItemData(newArr);
     }
   };
+  const felterBySearch = (word: string) => {
+    if (word !== "") {
+      const newArr = data.filter((w) => w.title === word);
+      setItemData(newArr);
+    }
+  };
   return (
     <>
       <div className="color-body font">
         <Container>
-          <NavBar />
+          <NavBar felterBySearch={felterBySearch} />
           <Header />
-          <Category felterByCategory={felterByCategory} />
+          <Category
+            felterByCategory={felterByCategory}
+            allCategories={AllCategories}
+          />
           <ItemsList itemData={itemData} />
         </Container>
       </div>
