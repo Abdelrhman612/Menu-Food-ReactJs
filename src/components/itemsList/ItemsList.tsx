@@ -1,15 +1,13 @@
 import { Card, Col, Row } from "react-bootstrap";
-import Zoom from "react-medium-image-zoom";
-import "react-medium-image-zoom/dist/styles.css";
 import { ItemData } from "./interFace";
-
+import { Zoom } from "react-awesome-reveal";
 const ItemsList = ({ itemData }: { itemData: ItemData[] }) => {
   return (
     <Row>
       <Zoom>
         {itemData.length ? (
           itemData.map((data) => (
-            <Col sm="12" className="mb-3" key={data.title}>
+            <Col key={data.id} sm="12" className="mb-3">
               <Card
                 className="d-flex flex-row"
                 style={{ backgroundColor: "#F8F8F8" }}
