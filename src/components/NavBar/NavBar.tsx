@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Container,
   Form,
@@ -6,8 +7,19 @@ import {
   Navbar,
   Row,
 } from "react-bootstrap";
+import { NavBarProps } from "./interFace";
 
-const NavBar = () => {
+const NavBar = ({ felterBySearch }: NavBarProps) => {
+  const [searchValue, setSearchValue] = useState("");
+  const onSearch = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (searchValue !== "") {
+      felterBySearch(searchValue);
+    } else {
+      alert("يرجى ادخال كلمة البحث");
+    }
+    setSearchValue("");
+  };
   return (
     <div>
       <Row>
@@ -28,8 +40,17 @@ const NavBar = () => {
                   type="text"
                   placeholder="ابحث.."
                   className="mx-2"
+                  onChange={(e) => setSearchValue(e.target.value)}
+                  value={searchValue}
                 />
-                <button className="btn-search">بحث</button>
+                <button
+                  onClick={(e) =>
+                    onSearch(e as unknown as React.FormEvent<HTMLFormElement>)
+                  }
+                  className="btn-search"
+                >
+                  بحث
+                </button>
               </Form>
             </Navbar.Collapse>
           </Container>
